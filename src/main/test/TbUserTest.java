@@ -92,7 +92,7 @@ public class TbUserTest {
 
 		System.out.println("=============== 2、分页查询，使用selectMapsPage，通过使用QueryWrapper ===============");
 
-		Page<Map<String, Object>> pageMap = new Page<Map<String, Object>>(1, 2);
+		Page<TbSysUser> pageMap = new Page<TbSysUser>(1, 2);
 		IPage<Map<String, Object>> iPageMap = tbSysUserMapper.selectMapsPage(pageMap, queryWrapper);
 
 		System.out.println("总页数	：" + iPageMap.getPages());
