@@ -1,0 +1,26 @@
+1、mybatis plus 逻辑删除
+    （1）对应逻辑删除注解是   @TableLogic
+    （2）指定select查询时不返回逻辑删除字段，可以这么设置 @TableField(value = "create_date", select = false)
+    （3）以上设置，不对自定义查询语言起作用
+2、mybatis plus 乐观锁
+    （1）对应乐观锁注解是     @Version
+    （2）支持的数据类型只有:int,Integer,long,Long,Date,Timestamp,LocalDateTime
+    （3）整数类型下 newVersion = oldVersion + 1
+    （4）newVersion 会回写到 entity 中
+    （5）仅支持 updateById(id) 与 update(entity, wrapper) 方法
+    （6）在 update(entity, wrapper) 方法下, wrapper 不能复用!!!
+3、mybatis plus 性能分析插件
+    （1）用于可以打印sql及执行时间，
+    （2）低版本时，可以通过 mp 自带的 PerformanceInterceptor实现
+        高版本时，mp 已抛弃 PerformanceInterceptor，只能自定义切面实现，或者使用第三方组件
+4、mybatis plus 多租户
+    不建议使用
+5、mybatis plus 动态表名
+    不建议使用
+6、mybatis plus sql注入器
+    可以实现自定义Mapper方法
+
+
+
+
+
