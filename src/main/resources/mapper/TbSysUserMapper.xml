@@ -11,11 +11,15 @@
     <result column="user_state" jdbcType="INTEGER" property="userState" />
   </resultMap>
 
-  <select id="listByUnameAndPwd" resultMap="BaseResultMap">
+  <select id="selectByUnameAndPwd" resultMap="BaseResultMap">
     select * from tb_sys_user where login_name = #{loginName} and upwd = #{upwd}
   </select>
 
   <select id="selectUserPage" resultType="com.wish.data.entity.TbSysUser">
-    select * from tb_sys_user ${ew.customSqlSegment}
+    select * from tb_sys_user
+  </select>
+
+  <select id="selectPageByRoleGroupId" resultType="com.wish.data.entity.TbSysUser">
+    select * from tb_sys_user where role_group_id = #{roleGroupId}
   </select>
 </mapper>

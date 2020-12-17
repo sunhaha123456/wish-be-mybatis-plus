@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MybatisPlusConfig {
 
+    // 功能：配置mybatis plus 分页拦截器
+    // 备注：以后再改成自定义拦截器形式
     @Bean
     public PaginationInterceptor paginationInterceptor() {
         return new PaginationInterceptor();

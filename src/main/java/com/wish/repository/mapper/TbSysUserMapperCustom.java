@@ -1,4 +1,4 @@
-package com.wish.repository.mapper.custom;
+package com.wish.repository.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -15,10 +15,10 @@ public class TbSysUserMapperCustom {
     @Resource
     private TbSysUserMapper tbSysUserMapper;
 
-    public IPage<TbSysUser> selectUserPage(Page<TbSysUser> page, Long roleGroupId) {
-        QueryWrapper<TbSysUser> queryWrapper = null;
-        queryWrapper = Wrappers.<TbSysUser>query();
-        queryWrapper.like("login_name", "ad").eq("role_group_id", roleGroupId);
-        return tbSysUserMapper.selectUserPage(page, queryWrapper);
-    }
+//    public IPage<TbSysUser> selectUserPage(Page<TbSysUser> page, Long roleGroupId) {
+//        QueryWrapper<TbSysUser> queryWrapper = null;
+//        queryWrapper = Wrappers.<TbSysUser>query();
+//        queryWrapper.like("login_name", "ad").eq("role_group_id", roleGroupId);
+//        return tbSysUserMapper.selectp.selectUserPage(page, queryWrapper);
+//    }
 }
