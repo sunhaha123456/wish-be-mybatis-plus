@@ -72,9 +72,10 @@ public class TbUserTest {
 		System.out.println(JsonUtil.objectToJson(list));
 	}
 
+	// 功能：分页查询，使用selectPage 和 selectMapsPage，通过使用QueryWrapper
 	@Test
-	public void testSelectPage1() {
-		System.out.println("=============== 1、分页方式 使用 QueryWrapper selectPage 方式 ===============");
+	public void testSelectPageByQueryWrapper() {
+		System.out.println("=============== 1、分页查询，使用selectPage，通过使用QueryWrapper ===============");
 
 		QueryWrapper<TbSysUser> queryWrapper = null;
 		queryWrapper = Wrappers.<TbSysUser>query();
@@ -89,7 +90,7 @@ public class TbUserTest {
 
 		System.out.println(JsonUtil.objectToJson(list));
 
-		System.out.println("=============== 2、分页方式 使用 QueryWrapper selectMapsPage 方式 ===============");
+		System.out.println("=============== 2、分页查询，使用selectMapsPage，通过使用QueryWrapper ===============");
 
 		Page<Map<String, Object>> pageMap = new Page<Map<String, Object>>(1, 2);
 		IPage<Map<String, Object>> iPageMap = tbSysUserMapper.selectMapsPage(pageMap, queryWrapper);
@@ -99,6 +100,35 @@ public class TbUserTest {
 		List<Map<String, Object>> listMap = iPageMap.getRecords();
 
 		System.out.println(JsonUtil.objectToJson(listMap));
+	}
+
+	// 功能：分页查询，使用Mapper 自定义方法
+	@Test
+	public void testSelectPageByMapper() {
+		System.out.println("============= 1、分页查询，使用Mapper 自定义方法 =============");
+		QueryWrapper<TbSysUser> queryWrapper = null;
+		queryWrapper = Wrappers.<TbSysUser>query();
+		queryWrapper.like("login_name", "ad").gt("id", 0);
+
+		Page<TbSysUser> page = new Page<TbSysUser>(2, 2);
+
+		IPage<TbSysUser> iPage = tbSysUserMapper.selectUserPage(page, queryWrapper);
+
+		System.out.println("总页数	：" + iPage.getPages());
+		System.out.println("总记录数	：" + iPage.getTotal());
+		List<TbSysUser> list = iPage.getRecords();
+
+		System.out.println(JsonUtil.objectToJson(list));
+
+		System.out.println("============= 2、分页查询，使用Mapper 自定义方法，并通过custom方式 =============");
+
+		iPage = tbSysUserMapperCustom.selectUserPage(page, 1L);
+
+		System.out.println("总页数	：" + iPage.getPages());
+		System.out.println("总记录数	：" + iPage.getTotal());
+		list = iPage.getRecords();
+
+		System.out.println(JsonUtil.objectToJson(list));
 	}
 
 	@Test
@@ -118,7 +148,7 @@ public class TbUserTest {
 
 		System.out.println(JsonUtil.objectToJson(list));
 
-		System.out.println("============= 2、分页 调Mapper 修改一下 =============");
+		System.out.println("============= 2、分页 调Mapper 自定义方法，但通过custom方式调用 =============");
 
 		iPage = tbSysUserMapperCustom.selectUserPage(page, 1L);
 
