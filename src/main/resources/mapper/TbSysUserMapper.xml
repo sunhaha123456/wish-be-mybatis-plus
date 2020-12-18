@@ -11,6 +11,8 @@
     <result column="user_state" jdbcType="INTEGER" property="userState" />
   </resultMap>
 
+  <!-- 以下是进行演示的例子 -->
+
   <select id="selectByUnameAndPwd" resultMap="BaseResultMap">
     select * from tb_sys_user where login_name = #{loginName} and upwd = #{upwd}
   </select>
@@ -27,7 +29,7 @@
   select login_name
   from tb_sys_user
   where
-  role_group_id = #{roleGroupId,jdbcType=NUMERIC}
+  role_group_id = #{roleGroupId,jdbcType=BIGINT}
   </select>
 
   <select id="selectLoginNameByUserState" resultType="String">
@@ -35,8 +37,29 @@
     from tb_sys_user
     <where>
       <if test="userState != null">
-        user_state = #{userState,jdbcType=NUMERIC}
+        user_state = #{userState,jdbcType=INTEGER}
       </if>
     </where>
+  </select>
+
+  <select id="selectLoginNameByUserStateReturnMap" resultType="java.util.HashMap">
+  select login_name
+  from tb_sys_user
+  where
+  user_state = #{userState,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectLoginNameByUserStateReturnMapPage" resultType="java.util.HashMap">
+  select login_name
+  from tb_sys_user
+  where
+  user_state = #{userState,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByObj" resultType="java.util.HashMap">
+  select login_name
+  from tb_sys_user
+  where
+  user_state = #{user.userState,jdbcType=INTEGER}
   </select>
 </mapper>

@@ -21,6 +21,9 @@ public class TbUserTest {
 	@Autowired
 	private TbSysUserMapper tbSysUserMapper;
 
+	// -------------------------------- 以下是进行演示的例子 --------------------------------
+
+	// 功能：演示新增
 	@Test
 	public void testInsert() {
 		// 新增，未指定主键生成策略的前提下，会按照雪花算法，生成自增id
@@ -37,6 +40,7 @@ public class TbUserTest {
 		System.out.println(c);
 	}
 
+	// 功能：演示基本查询
 	@Test
 	public void testSelect() {
 		TbSysUser user = tbSysUserMapper.selectById(1L);
@@ -50,6 +54,7 @@ public class TbUserTest {
 		System.out.println(JsonUtil.objectToJson(list));
 	}
 
+	// 功能：演示分页
 	@Test
 	public void testSelectPage() {
 		Page<TbSysUser> page1 = new Page<>(1, 2);
@@ -64,6 +69,34 @@ public class TbUserTest {
 		System.out.println("总记录数	：" + iPage2.getTotal());
 		System.out.println("总页数	：" + iPage2.getPages());
 	}
+
+	// 功能：演示查询返回Map list
+	@Test
+	public void testSelectMap() {
+		List<Map<String, Object>> userMapList = tbSysUserMapper.selectLoginNameByUserStateReturnMap(0);
+		System.out.println(JsonUtil.objectToJson(userMapList));
+	}
+
+	// 功能：演示查询分页 map
+	@Test
+	public void testSelectMapPage() {
+		Page<Map<String, Object>> page1 = new Page<>(1, 2);
+		IPage<Map<String, Object>> iPage1 = tbSysUserMapper.selectLoginNameByUserStateReturnMapPage(page1, 0);
+		System.out.println(page1 == iPage1);
+		System.out.println("总记录数	：" + iPage1.getTotal());
+		System.out.println("总页数	：" + iPage1.getPages());
+	}
+
+	// 功能：演示查询时，入参是对象形式
+	@Test
+	public void testSelectParamObj() {
+		TbSysUser param = new TbSysUser();
+		param.setUserState(0);
+		List<TbSysUser> userMapList = tbSysUserMapper.selectByObj(param);
+		System.out.println(JsonUtil.objectToJson(userMapList));
+	}
+
+
 
 
 
