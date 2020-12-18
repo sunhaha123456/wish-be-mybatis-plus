@@ -5,8 +5,8 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="last_modified" jdbcType="TIMESTAMP" property="lastModified" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
     <result column="role_group_id" jdbcType="INTEGER" property="roleGroupId" />
-    <result column="uname" jdbcType="VARCHAR" property="uname" />
     <result column="upwd" jdbcType="VARCHAR" property="upwd" />
     <result column="user_state" jdbcType="INTEGER" property="userState" />
   </resultMap>
@@ -21,5 +21,22 @@
 
   <select id="selectPageByRoleGroupId" resultType="com.wish.data.entity.TbSysUser">
     select * from tb_sys_user where role_group_id = #{roleGroupId}
+  </select>
+
+  <select id="selectLoginNameByRoleGroupId" resultMap="BaseResultMap">
+  select login_name
+  from tb_sys_user
+  where
+  role_group_id = #{roleGroupId,jdbcType=NUMERIC}
+  </select>
+
+  <select id="selectLoginNameByUserState" resultType="String">
+    select login_name
+    from tb_sys_user
+    <where>
+      <if test="userState != null">
+        user_state = #{userState,jdbcType=NUMERIC}
+      </if>
+    </where>
   </select>
 </mapper>
