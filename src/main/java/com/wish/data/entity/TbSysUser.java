@@ -1,12 +1,20 @@
 package com.wish.data.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+
+import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 系统用户表
+ */
 @TableName("tb_sys_user")   // 该注解，指定对应表名，默认会按照驼峰，逆向拆分实体类名
 @Data
-public class TbSysUser {
+public class TbSysUser implements Serializable {
 
     // 主键 id
     @TableId(type=IdType.AUTO)      // 该注解，表示该成员是表主键字段

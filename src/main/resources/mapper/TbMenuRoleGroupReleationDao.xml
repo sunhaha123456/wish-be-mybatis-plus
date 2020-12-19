@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wish.repository.mapper.TbMenuRoleGroupReleationDao">
+  <resultMap id="BaseResultMap" type="com.wish.data.entity.TbMenuRoleGroupReleation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_modified" jdbcType="TIMESTAMP" property="lastModified" />
+    <result column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="role_group_id" jdbcType="INTEGER" property="roleGroupId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_date, last_modified, menu_id, role_group_id
+  </sql>
+
+</mapper>
