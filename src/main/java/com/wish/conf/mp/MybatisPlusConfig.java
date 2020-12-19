@@ -10,9 +10,15 @@ import org.springframework.context.annotation.Configuration;
 public class MybatisPlusConfig {
 
     // 功能：配置mybatis plus 分页拦截器
-    // 备注：以后再改成自定义拦截器形式
     @Bean
     public PaginationInterceptor paginationInterceptor() {
         return new PaginationInterceptor();
     }
+
+    // 在需要开启乐观锁的时候，再取消注释，表示开启乐观锁
+//    // 功能：配置mybatis plus 乐观锁
+//    @Bean
+//    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+//        return new OptimisticLockerInterceptor();
+//    }
 }

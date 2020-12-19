@@ -64,7 +64,7 @@ public class TbUserTest {
 		System.out.println("总页数	：" + iPage1.getPages());
 
 		Page<TbSysUser> page2 = new Page<>(1, 2);
-		IPage<TbSysUser> iPage2 = tbSysUserMapper.selectPageByRoleGroupId(page2, 2L);
+		IPage<TbSysUser> iPage2 = tbSysUserMapper.selectPageByRoleGroupId(page2, 1L);
 		System.out.println(page2 == iPage2);
 		System.out.println("总记录数	：" + iPage2.getTotal());
 		System.out.println("总页数	：" + iPage2.getPages());
@@ -94,6 +94,33 @@ public class TbUserTest {
 		param.setUserState(0);
 		List<TbSysUser> userMapList = tbSysUserMapper.selectByObj(param);
 		System.out.println(JsonUtil.objectToJson(userMapList));
+	}
+
+	// 功能：演示左关联查询
+	@Test
+	public void testSelectPageLeft() {
+		Page<TbSysUser> page = new Page<>(1, 2);
+		IPage<TbSysUser> iPage= tbSysUserMapper.selectUserPageByLeft(page);
+		System.out.println(JsonUtil.objectToJson(iPage));
+
+		System.out.println("=======================");
+
+		List<TbSysUser> list = tbSysUserMapper.selectUserByLeft();
+		System.out.println(JsonUtil.objectToJson(list));
+
+		System.out.println("=======================");
+
+		Long c = tbSysUserMapper.selectCountUserByLeft();
+		System.out.println(c);
+	}
+
+	@Test
+	public void testVersion() {
+		TbSysUser user = new TbSysUser();
+		user.setId(1L);
+		user.setRoleGroupId(1L);
+		user.setUpwd("11111111111");
+		tbSysUserMapper.updateById(user);
 	}
 
 

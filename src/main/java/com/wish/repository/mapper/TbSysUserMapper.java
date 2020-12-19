@@ -28,4 +28,10 @@ public interface TbSysUserMapper extends BaseMapper<TbSysUser> {
     IPage<Map<String, Object>> selectLoginNameByUserStateReturnMapPage(Page<Map<String, Object>> page, @Param("userState") Integer userState);
 
     List<TbSysUser> selectByObj(@Param("user") TbSysUser user);
+
+    IPage<TbSysUser> selectUserPageByLeft(Page<TbSysUser> page);
+
+    List<TbSysUser> selectUserByLeft();
+
+    long selectCountUserByLeft();
 }

@@ -42,24 +42,37 @@
     </where>
   </select>
 
-  <select id="selectLoginNameByUserStateReturnMap" resultType="java.util.HashMap">
+  <select id="selectLoginNameByUserStateReturnMap" resultType="java.util.Map">
   select login_name
   from tb_sys_user
   where
   user_state = #{userState,jdbcType=INTEGER}
   </select>
 
-  <select id="selectLoginNameByUserStateReturnMapPage" resultType="java.util.HashMap">
+  <select id="selectLoginNameByUserStateReturnMapPage" resultType="java.util.Map">
   select login_name
   from tb_sys_user
   where
   user_state = #{userState,jdbcType=INTEGER}
   </select>
 
-  <select id="selectByObj" resultType="java.util.HashMap">
+  <select id="selectByObj" resultType="com.wish.data.entity.TbSysUser">
   select login_name
   from tb_sys_user
   where
   user_state = #{user.userState,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectUserPageByLeft" resultType="com.wish.data.entity.TbSysUser">
+    select * from tb_sys_user a left join tb_role_group b on a.role_group_id = b.role_state
+
+  </select>
+
+  <select id="selectUserByLeft" resultType="com.wish.data.entity.TbSysUser">
+    select * from tb_sys_user a left join tb_role_group b on a.role_group_id = b.role_state
+  </select>
+
+  <select id="selectCountUserByLeft" resultType="Long">
+    select count(1) from tb_sys_user a left join tb_role_group b on a.role_group_id = b.role_state
   </select>
 </mapper>
